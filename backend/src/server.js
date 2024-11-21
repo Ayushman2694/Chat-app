@@ -16,7 +16,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true })); // For form subm
 
 app.use(cookieParser())
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:'https://chat-app-frontend-0rup.onrender.com',
     credentials:true
 
 }))
