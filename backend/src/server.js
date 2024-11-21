@@ -15,11 +15,26 @@ app.use(express.json({ limit: '50mb' })); // For JSON requests
 app.use(express.urlencoded({ limit: '50mb', extended: true })); // For form submissions
 
 app.use(cookieParser())
-app.use(cors({
-    origin:'convohub-ayushman.netlify.app',
-    credentials:true
+import cors from 'cors';
 
-}))
+const allowedOrigins = [
+  'https://convohub-ayushman.netlify.app', // Allow Netlify domain
+  'http://localhost:3000', // Allow local development (if needed)
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error('Not allowed by CORS')); // Block the request
+    }
+  },
+  credentials: true, // Allow cookies if needed
+};
+
+app.use(cors(corsOptions));
+
 app.use("/api/auth",authRoutes)
 app.use("/api/message",messageRoutes)
 
