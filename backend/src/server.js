@@ -16,7 +16,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true })); // For form subm
 
 app.use(cookieParser())
 app.use(cors({
-    origin:'https://chat-app-frontend-0rup.onrender.com',
+    origin:'convohub-ayushman.netlify.app',
     credentials:true
 
 }))
