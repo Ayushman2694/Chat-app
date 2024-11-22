@@ -15,7 +15,6 @@ app.use(express.json({ limit: '50mb' })); // For JSON requests
 app.use(express.urlencoded({ limit: '50mb', extended: true })); // For form submissions
 
 app.use(cookieParser())
-import cors from 'cors';
 
 const allowedOrigins = [
   'https://convohub-ayushman.netlify.app', // Allow Netlify domain
