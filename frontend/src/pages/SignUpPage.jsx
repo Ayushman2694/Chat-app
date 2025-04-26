@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 import AuthImagePattern from "../components/AuthImagePattern";
 import toast from "react-hot-toast";
-import Navbar from "../components/Navbar";
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +21,7 @@ const SignUpPage = () => {
     if (!formData.email.trim()) return toast.error("Email is required");
     if (!/\S+@\S+\.\S+/.test(formData.email)) return toast.error("Invalid email format");
     if (!formData.password) return toast.error("Password is required");
-    if (formData.password.length < 8) return toast.error("Password must be at least 8 characters");
+    if (formData.password.length < 6) return toast.error("Password must be at least 6 characters");
 
     return true;
   };
@@ -36,14 +35,12 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="h-screen bg-slate-700 flex flex-col ">
-    <Navbar />
-    <div className="grid lg:grid-cols-2">
+    <div className="min-h-screen grid lg:grid-cols-2">
       {/* left side */}
-      <div className="flex flex-col justify-center items-center p-6 sm:px-12">
-        <div className="w-full max-w-md space-y-8 ">
+      <div className="flex flex-col justify-center items-center p-6 sm:p-12">
+        <div className="w-full max-w-md space-y-8">
           {/* LOGO */}
-          <div className="text-center mb-8 ">
+          <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group">
               <div
                 className="size-12 rounded-xl bg-primary/10 flex items-center justify-center 
@@ -56,7 +53,7 @@ const SignUpPage = () => {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Full Name</span>
@@ -68,7 +65,7 @@ const SignUpPage = () => {
                 <input
                   type="text"
                   className={`input input-bordered w-full pl-10`}
-                  placeholder="Enter your full name"
+                  placeholder="John Doe"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                 />
@@ -86,7 +83,7 @@ const SignUpPage = () => {
                 <input
                   type="email"
                   className={`input input-bordered w-full pl-10`}
-                  placeholder="Enter your email"
+                  placeholder="you@example.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
@@ -104,7 +101,7 @@ const SignUpPage = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   className={`input input-bordered w-full pl-10`}
-                  placeholder="Enter password"
+                  placeholder="••••••••"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 />
@@ -138,7 +135,7 @@ const SignUpPage = () => {
             <p className="text-base-content/60">
               Already have an account?{" "}
               <Link to="/login" className="link link-primary">
-                Sign In
+                Sign in
               </Link>
             </p>
           </div>
@@ -151,7 +148,6 @@ const SignUpPage = () => {
         title="Join our community"
         subtitle="Connect with friends, share moments, and stay in touch with your loved ones."
       />
-    </div>
     </div>
   );
 };
